@@ -2,7 +2,7 @@ import re
 import unittest 
 from customer import Customer
 from rental import Rental
-from movie import Movie
+from movie import *
 
 class CustomerTest(unittest.TestCase): 
 	""" Tests of the Customer class"""
@@ -14,12 +14,12 @@ class CustomerTest(unittest.TestCase):
 		movies = list of some movies
 		"""
 		self.c = Customer("Movie Mogul")
-		self.new_movie = Movie("Mulan", Movie.NEW_RELEASE)
-		self.regular_movie = Movie("CitizenFour", Movie.REGULAR)
-		self.childrens_movie = Movie("Frozen", Movie.CHILDRENS)
+		self.new_movie = Movie("Mulan", PriceCode.NEW_RELEASE)
+		self.regular_movie = Movie("CitizenFour", PriceCode.REGULAR)
+		self.childrens_movie = Movie("Frozen", PriceCode.CHILDRENS)
 		
 	@unittest.skip("No convenient way to test")
-	def test_billing():
+	def test_billing(self):
 		# no convenient way to test billing since its buried in the statement() method.
 		pass
 	
