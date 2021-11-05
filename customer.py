@@ -1,5 +1,6 @@
-from rental import Rental
+from rental import Rental, PriceCode
 from movie import *
+from datetime import datetime
 
 
 class Customer:
@@ -37,7 +38,7 @@ class Customer:
         
         for rental in self.rentals:
             # award renter points
-            frequent_renter_points += Rental.get_point(rental)
+            frequent_renter_points += Rental.get_rental_point(rental)
             #  add detail line to statement
             statement += fmt.format(rental.get_movie().get_title(), rental.get_days_rented(), Rental.get_price(rental))
             # and accumulate activity
@@ -55,8 +56,8 @@ class Customer:
 if __name__ == "__main__":
     customer = Customer("Edward Snowden")
     print(customer.statement())
-    movie = Movie("Hacker Noon", PriceCode.REGULAR)
+    movie = Movie("Jurassic World", '2015', ["Thriller"])
     customer.add_rental(Rental(movie, 2))
-    movie = Movie("CitizenFour", PriceCode.NEW_RELEASE)
+    movie = Movie("Rang Zong", str(datetime.now().year), ['Horror'])
     customer.add_rental(Rental(movie, 3))
     print(customer.statement())
